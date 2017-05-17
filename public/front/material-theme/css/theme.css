@@ -1,0 +1,41 @@
+code {
+	background: #FFFFC2;
+	color: #555
+}
+
+pre{
+	font-size: 0.8em;
+	line-height: 24px;
+	color: #fff;
+	background: #263238 !important
+}
+
+.tools .info {
+	height: 300px
+}
+
+.blog-detail-thumb {
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+	border-radius: none
+}
+
+.alert a {
+	text-decoration: underline
+}
+
+.g-recaptcha {
+	margin-bottom: 20px;
+}
+
+.profile-page .g-recaptcha {
+	margin-bottom: 0px;
+}
+
+.btn-tag {
+	background: #f3f3f3 !important;
+	color: #818181 !important;
+}
+
+figcaption .fa-comment {margin-left:15px}
