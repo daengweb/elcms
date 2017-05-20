@@ -76,75 +76,67 @@
         <div class="container">
             <div class="col-sm-8 col-md-8">
                 <div class="row">
-                    <div id="masonry">
-                        <ul class="grid">
-                            @if ($post->count() > 0)
-                            @foreach ($post as $posts)
-                            <li class="col-md-6">
-                                <div class="post">
-                                    <a href="{{ url($posts->slug) }}">
-                                        <img src="{{ asset($posts->gambar) }}" alt="{{ $posts->judul }}">
-                                    </a>
-                                    <div class="content">
-                                        <h3><a href="{{ url($posts->slug) }}">{{ $posts->judul }}</a></h3>
-                                        @foreach ($posts->kategori as $post_kategoris)
-                                        <a href="{{ url('kategori/' . $post_kategoris->slug) }}" class="btn btn-white btn-tag btn-xs">{{ $post_kategoris->nama_kategori }}</a>
-                                        @endforeach
-                                        <div class="description">{{ strip_tags(str_limit($posts->isi, 200)) }}</div>
-                                            
-                                        <ul class="list-inline details">
-                                            <li>
-                                                <a><i class="material-icons">date_range</i>{{ $posts->created_at->diffForHumans() }}</a>
-                                            </li>
-                                            <li>
-                                                <a><i class="material-icons">visibility</i>{{ $posts->dilihat }}</a>
-                                            </li>
-                                            <li class="pull-right">
-                                                <a><i class="material-icons">comment</i></a><a href="#">0</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </li>
-                            @endforeach
-                            @else
-                            <li class="col-md-12">
-                                <aside>
-                                    <h2 class="text-center"> Tidak ada artikel</h2>
-                                </aside>
-                            </li>
-                            @endif
-                        </ul>
-                        <div class="pull-right">
-                            {!! $post->links() !!}
+                    @if ($post->count() > 0)
+                    @foreach ($post as $posts)
+                    <div class="col-md-6" id="masonry">
+                        <div class="post">
+                            <a href="{{ url($posts->slug) }}">
+                                <img src="{{ asset($posts->gambar) }}" alt="{{ $posts->judul }}">
+                            </a>
+                            <div class="content">
+                                <h3><a href="{{ url($posts->slug) }}">{{ $posts->judul }}</a></h3>
+                                @foreach ($posts->kategori as $post_kategoris)
+                                <a href="{{ url('kategori/' . $post_kategoris->slug) }}" class="btn btn-white btn-tag btn-xs">{{ $post_kategoris->nama_kategori }}</a>
+                                @endforeach
+                                <div class="description">{{ strip_tags(str_limit($posts->isi, 200)) }}</div>
+                                                
+                                <ul class="list-inline details">
+                                    <li>
+                                        <a><i class="material-icons">date_range</i>{{ $posts->created_at->diffForHumans() }}</a>
+                                    </li>
+                                    <li>
+                                        <a><i class="material-icons">visibility</i>{{ $posts->dilihat }}</a>
+                                    </li>
+                                    <li class="pull-right">
+                                        <a><i class="material-icons">comment</i></a><a href="#">0</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="text-center">Tidak ada artikel</div>
+                    @endif
+                    <div class="pull-right">
+                        {!! $post->links() !!}
                     </div>
                 </div>
             </div>
-                <div class="col-sm-4 col-md-4">
-                    <aside>
-                        <h3><i class="fa fa-tags"></i> Kategori</h3>
-                        <ul>
-                            @foreach ($site_kategori as $site_kategoris)
-                            <li><a href="{{ url('kategori/' . $site_kategoris->slug) }}">{{ $site_kategoris->nama_kategori }}</a></li>
-                            @endforeach
-                        </ul>           
-                    </aside>
-                    <!--
-                    <aside>
-                        <h3><i class="fa fa-star"></i> Populer</h3>
-                        <div class="small-post">
-                            <a href="#"><img src="#" alt="#"></a>
-                            <a href="#"><p>#</p></a>
-                        </div>
-                    </aside>-->
-                    <aside>
-                        <h3><i class="fa fa-hashtag"></i> Tags</h3>
-                        @foreach ($site_tag as $site_tags)
-                        <a href="{{ url('tag/' . $site_tags->slug) }}" class="btn btn-white btn-tag btn-xs ">{{ $site_tags->nama_tag }}</a> 
-                        @endforeach             
-                    </aside>
-                </div>
+            <div class="col-sm-4 col-md-4">
+                <aside>
+                    <h3><i class="fa fa-tags"></i> Kategori</h3>
+                    <ul>
+                        @foreach ($site_kategori as $site_kategoris)
+                        <li><a href="{{ url('kategori/' . $site_kategoris->slug) }}">{{ $site_kategoris->nama_kategori }}</a></li>
+                        @endforeach
+                    </ul>           
+                </aside>
+                <!--
+                <aside>
+                    <h3><i class="fa fa-star"></i> Populer</h3>
+                    <div class="small-post">
+                        <a href="#"><img src="#" alt="#"></a>
+                        <a href="#"><p>#</p></a>
+                    </div>
+                </aside>-->
+                <aside>
+                    <h3><i class="fa fa-hashtag"></i> Tags</h3>
+                    @foreach ($site_tag as $site_tags)
+                    <a href="{{ url('tag/' . $site_tags->slug) }}" class="btn btn-white btn-tag btn-xs ">{{ $site_tags->nama_tag }}</a> 
+                    @endforeach             
+                </aside>
             </div>
         </div>
+    </div>
 @endsection

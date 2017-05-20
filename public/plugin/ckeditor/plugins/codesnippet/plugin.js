@@ -43,7 +43,7 @@
 
 				// We might escape special regex chars below, but we expect that there
 				// should be no crazy values used as lang keys.
-				editor._.codesnippet.langsRegex = new RegExp( '(?:^|\\s)language-(' +
+				editor._.codesnippet.langsRegex = new RegExp( '(?:^|\\s)(' +
 					CKEDITOR.tools.objectKeys( langs ).join( '|' ) + ')(?:\\s|$)' );
 			};
 		},
@@ -287,7 +287,7 @@
 			lang = editor.lang.codesnippet;
 
 		editor.widgets.add( 'codeSnippet', {
-			allowedContent: 'pre; code(language-*)',
+			allowedContent: 'pre; code(*)',
 			// Actually we need both - pre and code, but ACF does not make it possible
 			// to defire required content with "and" operator.
 			requiredContent: 'pre',
@@ -332,12 +332,12 @@
 
 				// Remove old .language-* class.
 				if ( oldData && newData.lang != oldData.lang )
-					this.parts.code.removeClass( 'language-' + oldData.lang );
+					this.parts.code.removeClass( oldData.lang );
 
 				// Lang needs to be specified in order to apply formatting.
 				if ( newData.lang ) {
 					// Apply new .language-* class.
-					this.parts.code.addClass( 'language-' + newData.lang );
+					this.parts.code.addClass( newData.lang );
 
 					this.highlight();
 				}
