@@ -12,6 +12,7 @@
 */
 Route::get('/', 'Front\FrontController@index')->name('depan');
 Route::get('/kategori/{slug}', 'Front\FrontController@kategori');
+Route::get('/artikel', 'Front\FrontController@allPost');
 Route::get('/tag/{slug}', 'Front\FrontController@tag');
 Route::get('/cari', 'Front\FrontController@cari')->name('cari');
 Route::get('/tentang', 'Front\FrontController@tentang')->name('tentang');

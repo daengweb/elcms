@@ -14,15 +14,15 @@ class FrontController extends Controller
     public function index()
     {
         $setting = Setting::first();
-    	$post = Post::where('is_publish', 1)->orderBy('created_at', 'DESC')->paginate($setting->blog_show_item);
-    	return view('front.material.index', compact('post'));
+    	$post = Post::where('is_publish', 1)->orderBy('created_at', 'DESC')->take($setting->blog_show_item)->skip(0)->get();
+    	return view('front.helpzone.index', compact('post'));
     }
 
     public function kategori($slug)
     {
-    	$post = Kategori::where('slug', $slug)->first()->post()->where('is_publish', 1)->paginate(10);
+    	$post = Kategori::where('slug', $slug)->first()->post()->where('is_publish', 1)->paginate(6);
     	$kategori = Kategori::where('slug', $slug)->first();
-    	return view('front.material.kategori', compact('post', 'kategori'));
+    	return view('front.helpzone.kategori', compact('post', 'kategori'));
     }
 
     public function showPost($slug)
@@ -30,26 +30,32 @@ class FrontController extends Controller
     	$post = Post::where('slug', $slug)->first();
     	$post->update(['dilihat' => $post->dilihat+1]);
     	$artikel = Post::where('slug', '!=', $slug)->where('is_publish', 1)->orderBy('created_at', 'DESC')->take(3)->skip(0)->get();
-    	return view('front.material.show_post', compact('post', 'artikel'));
+    	return view('front.helpzone.show_post', compact('post', 'artikel'));
+    }
+
+    public function allPost()
+    {
+        $post = Post::where('is_publish', 1)->orderBy('created_at', 'DESC')->paginate(10);
+        return view('front.helpzone.all_post', compact('post'));
     }
 
     public function tag($slug)
     {
         $post = Tag::where('slug', $slug)->first()->post()->where('is_publish', 1)->paginate(10);
         $tag = Tag::where('slug', $slug)->first();
-        return view('front.material.tag', compact('post', 'tag'));
+        return view('front.helpzone.tag', compact('post', 'tag'));
     }
 
     public function cari(Request $request)
     {
         $post = Post::search($request->q)->paginate(10);
         $q = $request->q;
-        return view('front.material.cari', compact('post', 'q'));
+        return view('front.helpzone.cari', compact('post', 'q'));
     }
 
     public function tentang()
     {
-        return view('front.material.tentang');
+        return view('front.helpzone.tentang');
     }
 
     public function sitemap()
