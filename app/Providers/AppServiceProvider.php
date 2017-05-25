@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(
             '*', 'App\Http\ViewComposers\SettingComposer'
         );
+        $this->app->environment() != 'local' ? \URL::forceScheme('https') : '';
     }
 
     /**
