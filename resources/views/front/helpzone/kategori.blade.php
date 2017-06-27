@@ -54,8 +54,8 @@
                             @foreach ($post as $posts)
                             <div class="col-xs-12 col-md-6 col-lg-6 col-sm-6">
                                 <div class="card article-card article-card--white">
-                                    <img src="{{ asset($posts->gambar) }}" class="img-responsive" width="100%">
-                                    <div class="card-wrap" style="padding-top: 150px">
+                                    <img src="{{ asset($posts->gambar) }}" class="img-responsive" width="100%" height="300px">
+                                    <div class="card-wrap" style="padding-top: 200px">
                                         <a href="{{ url($posts->slug) }}"></a>
 
                                         @foreach ($posts->kategori as $post_kategoris)
@@ -64,7 +64,7 @@
 
 
                                         <h3>{{ str_limit($posts->judul, 40) }}</h3>
-                                        <p>{{ strip_tags(str_limit($posts->isi, 200)) }}</p>
+                                        <p>{{ strip_tags(str_limit($posts->isi, 150)) }}</p>
                                         <ul class="statistic">
                                             <li class="likes">
                                                 <a href="#"><i class="zmdi zmdi-favorite-outline"></i></a>

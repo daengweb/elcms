@@ -18,7 +18,7 @@ Route::get('/cari', 'Front\FrontController@cari')->name('cari');
 Route::get('/tentang', 'Front\FrontController@tentang')->name('tentang');
 Route::get('/sitemap.xml', 'Front\FrontController@sitemap')->name('sitemap');
 Route::get('/sitemap/posts.xml', 'Front\FrontController@sitemapPost')->name('sitemap.posts');
-Route::get('/sitemap/kategori.xml', 'Front\FrontController@sitemapPost')->name('sitemap.kategori');
+Route::get('/sitemap/kategori.xml', 'Front\FrontController@sitemapKategori')->name('sitemap.kategori');
 
 Route::group(['prefix' => 'bd-admin'], function() {
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

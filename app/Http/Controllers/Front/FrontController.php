@@ -20,7 +20,7 @@ class FrontController extends Controller
 
     public function kategori($slug)
     {
-    	$post = Kategori::where('slug', $slug)->first()->post()->where('is_publish', 1)->paginate(6);
+    	$post = Kategori::where('slug', $slug)->first()->post()->where('is_publish', 1)->orderBy('created_at', 'DESC')->paginate(6);
     	$kategori = Kategori::where('slug', $slug)->first();
     	return view('front.helpzone.kategori', compact('post', 'kategori'));
     }
@@ -79,6 +79,7 @@ class FrontController extends Controller
     public function sitemapKategori()
     {
         $kategori = Kategori::orderBy('created_at', 'DESC')->get();
+
         return response()->view('front.material.sitemap.kategori', [
             'categories' => $kategori,
         ])->header('Content-Type', 'text/xml');
